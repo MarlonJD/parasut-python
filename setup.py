@@ -2,7 +2,7 @@ import setuptools
 from parasut.version import Version
 
 setuptools.setup(name='parasut-python',
-                 version=Version('0.0.1').number,
+                 version=Version('0.0.2').number,
                  description='Parasut API Python Wrapper',
                  long_description=open('README.md').read().strip(),
                  long_description_content_type="text/markdown",
