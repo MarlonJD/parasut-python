@@ -1,7 +1,7 @@
 from requests_oauthlib import OAuth2Session
 from oauthlib.oauth2 import LegacyApplicationClient, TokenExpiredError
 import json
-from . import functions
+from .functions import Functions
 from . import urls
 
 
@@ -13,9 +13,34 @@ class Client(object):
         self.client_secret = kwargs.get('client_secret')
         self.username = kwargs.get('username')
         self.password = kwargs.get('password')
+
+        # Sandbox var if production or test
+        self.sandbox = False
+        if 'sandbox' in kwargs:
+            self.sandbox = kwargs.get('sandbox')
+        else:
+            self.sandbox = False
+
+        # BaseUrl settings for custom url
+        self.baseUrl = None
+        if 'base_url' in kwargs:
+            self.baseUrl = kwargs.get('base_url')
+        else:
+            if self.sandbox:
+                self.baseUrl = urls.SANDBOX_BASE_URL
+
+        # TokenUrl settings if custom url
+        self.tokenUrl = None
+        if 'token_url' in kwargs:
+            self.tokenUrl = kwargs.get('token_url')
+        else:
+            if self.tokenUrl:
+                self.tokenUrl = urls.SANDBOX_TOKEN_URL
+
         self.token = None
         self.request = None
         self.companyId = None
+        self.functions = None
 
         if 'client_id' not in kwargs:
             raise TypeError("You must provide client_id")
@@ -40,17 +65,34 @@ class Client(object):
         self.request = oauth
 
     def getToken(self):
-        token = self.request.fetch_token(
-            token_url='https://api.parasut.com/oauth/token',
-            username=self.username,
-            password=self.password,
-            client_id=self.client_id,
-            client_secret=self.client_secret)
+        if not self.request:
+            self.authorize()
+
+        if self.tokenUrl:
+            tokenUrl = self.tokenUrl
+        else:
+            if self.sandbox:
+                tokenUrl = urls.SANDBOX_TOKEN_URL
+            else:
+                tokenUrl = urls.TOKEN_URL
+        print(tokenUrl)
+        token = self.request.fetch_token(token_url=tokenUrl,
+                                         username=self.username,
+                                         password=self.password,
+                                         client_id=self.client_id,
+                                         client_secret=self.client_secret)
         self.saveToken(token)
 
     def refreshToken(self, token):
+        if self.tokenUrl:
+            tokenUrl = self.tokenUrl
+        else:
+            if self.sandbox:
+                tokenUrl = urls.SANDBOX_TOKEN_URL
+            else:
+                tokenUrl = urls.TOKEN_URL
         update_token = self.request.refresh_token(
-            token_url='https://api.parasut.com/oauth/token',
+            token_url=tokenUrl,
             refresh_token=self.token.get('refresh_token'),
             client_id=self.client_id,
             client_secret=self.client_secret)
@@ -74,78 +116,93 @@ class Client(object):
             try:
                 return self.request.post(
                     url=url,
-                    headers={
-                        'Content-Type': 'application/json'},
+                    headers={'Content-Type': 'application/json'},
                     data=json.dumps(data))
             except TokenExpiredError:
                 self.refreshToken()
                 return self.request.post(
                     url=url,
-                    headers={
-                        'Content-Type': 'application/json'},
+                    headers={'Content-Type': 'application/json'},
                     data=json.dumps(data))
         if method == 'PUT':
             try:
                 return self.request.put(
                     url=url,
-                    headers={
-                        'Content-Type': 'application/json'},
+                    headers={'Content-Type': 'application/json'},
                     data=json.dumps(data))
             except TokenExpiredError:
                 self.refreshToken()
                 return self.request.put(
                     url=url,
-                    headers={
-                        'Content-Type': 'application/json'},
+                    headers={'Content-Type': 'application/json'},
                     data=json.dumps(data))
         if method == 'DELETE':
             try:
                 return self.request.delete(
                     url=url,
-                    headers={
-                        'Content-Type': 'application/json'},
+                    headers={'Content-Type': 'application/json'},
                     data=json.dumps(data))
             except TokenExpiredError:
                 self.refreshToken()
                 return self.request.delete(
                     url=url,
-                    headers={
-                        'Content-Type': 'application/json'},
+                    headers={'Content-Type': 'application/json'},
                     data=json.dumps(data))
         if method == 'PATCH':
             try:
                 return self.request.patch(
                     url=url,
-                    headers={
-                        'Content-Type': 'application/json'},
+                    headers={'Content-Type': 'application/json'},
                     data=json.dumps(data))
             except TokenExpiredError:
                 self.refreshToken()
                 return self.request.patch(
                     url=url,
-                    headers={
-                        'Content-Type': 'application/json'},
+                    headers={'Content-Type': 'application/json'},
                     data=json.dumps(data))
 
     def response(self, obj):
         return obj.json()
 
     def getCompanyId(self):
+        if not self.request:
+            self.authorize()
+
+        if not self.token:
+            self.getToken()
+
         try:
-            r = self.request.get(url=urls.ME_URL)
+            if self.sandbox:
+                url = urls.SANDBOX_ME_URL
+            else:
+                url = urls.ME_URL
+            r = self.request.get(url=url) 
         except TokenExpiredError:
             self.refreshToken()
-            self.request.get(url=urls.ME_URL)
+            if self.sandbox:
+                url = urls.SANDBOX_ME_URL
+            else:
+                url = urls.ME_URL
+            r = self.request.get(url=url)
         res = json.loads(json.dumps(r.json()))
         cid = None
-        for v in res['included']:
-            if v['type'] == 'companies':
-                cid = v['id']
+
+        try:
+            if res['errors']:
+                raise KeyError("Not found company_id in /me")
+        except KeyError:
+            for v in res['included']:
+                if v['type'] == 'companies':
+                    cid = v['id']
 
         if cid:
             self.companyId = cid
 
-    def createContact(self, data):
+    def getFunctionsClass(self):
+        self.functions = Functions(company_id=self.companyId,
+                                   base_url=self.baseUrl)
+
+    def initialize(self):
         if not self.request:
             self.authorize()
 
@@ -155,4 +212,9 @@ class Client(object):
         if not self.companyId:
             self.getCompanyId()
 
-        return functions.createContact(self.makeRequest, self.companyId, data)
+        if not self.functions:
+            self.getFunctionsClass()
+
+    def createContact(self, data):
+        self.initialize()
+        self.functions.createContact(self.makeRequest, self.companyId, data)

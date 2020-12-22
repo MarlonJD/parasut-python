@@ -1,7 +1,9 @@
 # URL Constants
 BASE_URL = 'https://api.parasut.com/v4/'
 TOKEN_URL = 'https://api.parasut.com/oauth/token'
-COMPANY_ID = ":company_id"
+SANDBOX_BASE_URL = 'https://api.heroku-staging.parasut.com/v4/'
+SANDBOX_TOKEN_URL = 'https://api.heroku-staging.parasut.com/oauth/token'
+COMPANY_ID = ':company_id'
 
 # Sales
 SALES_INVOICES_URL = BASE_URL + COMPANY_ID + '/sales_invoices'
@@ -35,5 +37,6 @@ CATEGORIES_URL = BASE_URL + COMPANY_ID + '/item_categories'
 TAGS_URL = BASE_URL + COMPANY_ID + '/tags'
 
 # OTHER
-ME_URL = BASE_URL + '/me'
+ME_URL = BASE_URL + 'me'
+SANDBOX_ME_URL = SANDBOX_BASE_URL + 'me'
 TRACKABLE_JOB = BASE_URL + COMPANY_ID + '/trackable_jobs/'

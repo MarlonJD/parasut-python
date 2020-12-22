@@ -1,5 +1,4 @@
 pytest>=6.2.1
 pytest-cov>=2.10.1
-json
-request>=2.25.0
+requests>=2.25.0
 requests_oauthlib>=1.3.0
