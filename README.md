@@ -11,15 +11,21 @@ This project is under heavy development. Please be aware before use
 Basic structure of package is
 
 ```
+├── .gitignore
+├── .travis.yml
+├── CONTRIBUTING.md
+├── LICENSE
 ├── README.md
 ├── parasut
 │   ├── __init__.py
-│   ├── client.py 
+│   ├── client.py
 │   ├── functions.py
 │   ├── urls.py
 │   └── version.py
 ├── pytest.ini
 ├── requirements.txt
+├── script
+│   └── test
 ├── setup.py
 └── tests
     ├── __init__.py
