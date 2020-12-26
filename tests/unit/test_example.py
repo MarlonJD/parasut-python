@@ -128,4 +128,5 @@ class TestExample(unittest.TestCase):
         client_obj.authorize()
         client_obj.getToken()
         client_obj.getCompanyId()
+        client_obj.showContact()
         print(client_obj.companyId)

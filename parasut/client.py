@@ -176,7 +176,7 @@ class Client(object):
                 url = urls.SANDBOX_ME_URL
             else:
                 url = urls.ME_URL
-            r = self.request.get(url=url) 
+            r = self.request.get(url=url)
         except TokenExpiredError:
             self.refreshToken()
             if self.sandbox:
@@ -215,6 +215,19 @@ class Client(object):
         if not self.functions:
             self.getFunctionsClass()
 
+    def indexContact(self, data):
+        self.initialize()
+        self.functions.IndexContact(self.makeRequest)
+
     def createContact(self, data):
         self.initialize()
-        self.functions.createContact(self.makeRequest, self.companyId, data)
+        self.functions.createContact(self.makeRequest, data)
+
+    def showContact(self, data, contact_id):
+        """ Show Contact endpoint via GET
+        Args:
+            data: JSON Request data
+            contact_id: id parameter of contact for url
+        """
+        self.initialize()
+        self.functions.showContact(self.makeRequest, contact_id)

@@ -21,7 +21,7 @@ EMPLOYEES_URL = BASE_URL + COMPANY_ID + '/employees'
 E_INVOICE_INBOX_URL = BASE_URL + COMPANY_ID + 'e_invoice_inboxes'
 E_ARCHIVES_URL = BASE_URL + COMPANY_ID + '/e_archives'
 E_INVOICE_URL = BASE_URL + COMPANY_ID + '/e_invoices'
-E_SSMS_URL = BASE_URL + COMPANY_ID + '/e_smms'
+E_SMMS_URL = BASE_URL + COMPANY_ID + '/e_smms'
 
 # CASH
 ACCOUNTS_URL = BASE_URL + COMPANY_ID + '/accounts'
