@@ -7,6 +7,12 @@ This project is not offical library. It's unoffical python wrapper
 This project is under heavy development. Please be aware before use
 Query parameters not included for functions
 
+## Install
+```
+pip install parasut-python
+```
+
+
 ## Using
 ```
 import os
