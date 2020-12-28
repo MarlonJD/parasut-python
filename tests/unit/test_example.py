@@ -10,7 +10,6 @@ from parasut.client import Client
 
 
 class TestExample(unittest.TestCase):
-
     # def test_helper(self):
     #     self.assertEqual(MyHelper.days_ago(date.today()), 0)
 
@@ -113,7 +112,7 @@ class TestExample(unittest.TestCase):
                base_url='https://www.example.com',
                token_url='https://www.example.com/oauth/token')
 
-    def testCompanyId(self):
+    def testIndexInvoice(self):
         CLIENT_ID = os.environ['PARASUT_CLIENT_ID']
         CLIENT_SECRET = os.environ['PARASUT_CLIENT_SECRET']
         USERNAME = os.environ['PARASUT_USERNAME']
@@ -125,8 +124,68 @@ class TestExample(unittest.TestCase):
                             password=PASSWORD,
                             sandbox=True)
 
-        client_obj.authorize()
-        client_obj.getToken()
-        client_obj.getCompanyId()
-        client_obj.showContact()
+        client_obj.initialize()
+        client_obj.functions.indexInvoice()
         print(client_obj.companyId)
+
+    def testCreateInvoice(self):
+        CLIENT_ID = os.environ['PARASUT_CLIENT_ID']
+        CLIENT_SECRET = os.environ['PARASUT_CLIENT_SECRET']
+        USERNAME = os.environ['PARASUT_USERNAME']
+        PASSWORD = os.environ['PARASUT_PASSWORD']
+
+        client_obj = Client(client_id=CLIENT_ID,
+                            client_secret=CLIENT_SECRET,
+                            username=USERNAME,
+                            password=PASSWORD,
+                            sandbox=True)
+
+        client_obj.initialize()
+
+        # You can get request parameters from
+        # https://apidocs.parasut.com/#operation/createContact
+        data = {
+            "data": {
+              "type": "contacts",
+              "attributes": {
+                "email": "user@example.com",
+                "name": "string",
+                "short_name": "string",
+                "contact_type": "person",
+                "tax_office": "string",
+                "tax_number": "string",
+                "district": "string",
+                "city": "string",
+                "address": "string",
+                "phone": "string",
+                "fax": "string",
+                "is_abroad": True,
+                "archived": True,
+                "iban": "string",
+                "account_type": "customer"
+              },
+              "relationships": {
+                "category": {
+                    "data": {
+                        "type": "item_categories"
+                    }
+                },
+                "contact_people": {
+                  "data": [
+                    {
+                      "type": "contact_people",
+                      "attributes": {
+                        "name": "string",
+                        "email": "user@example.com",
+                        "phone": "string",
+                        "notes": "string"
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+
+        obj = client_obj.functions.createContact(data)
+        print(obj.json())

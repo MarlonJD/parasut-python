@@ -23,7 +23,7 @@ class Functions(object):
     def replaceUrl(self, url):
         url_obj = url.replace(':company_id', self.company_id)
         if self.baseUrl:
-            url_obj = url_obj(urls.BASE_URL, self.baseUrl)
+            url_obj = url_obj.replace(urls.BASE_URL, self.baseUrl)
         return url_obj
 
     def indexGeneral(self, uri):
@@ -149,8 +149,8 @@ class Functions(object):
         """Sales: Contacts Delete via DELETE
         """
         return self.deleteGeneral(urls.CONTACTS_URL, pk)
-v
-    def transtactionsContact(self, data, pk):
+
+    def transactionsContact(self, data, pk):
         """Sales: Contacts Debit Transactions via POST
         """
         url = self.replaceUrl(urls.CONTACTS_URL + '/' + pk +

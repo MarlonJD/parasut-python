@@ -3,6 +3,7 @@ from oauthlib.oauth2 import LegacyApplicationClient, TokenExpiredError
 import json
 from .functions import Functions
 from . import urls
+from functools import wraps
 
 
 class Client(object):
@@ -216,19 +217,119 @@ class Client(object):
         if not self.functions:
             self.getFunctionsClass()
 
-    def indexContact(self, data):
-        self.initialize()
-        self.functions.IndexContact(self.makeRequest)
+    # def initializeDec(func):
+    #     @wraps(func)
+    #     def wrapper(self, *args):
+    #         if not self.request:
+    #             self.authorize()
 
-    def createContact(self, data):
-        self.initialize()
-        self.functions.createContact(self.makeRequest, data)
+    #         if not self.token:
+    #             self.getToken()
 
-    def showContact(self, data, contact_id):
-        """ Show Contact endpoint via GET
-        Args:
-            data: JSON Request data
-            contact_id: id parameter of contact for url
-        """
-        self.initialize()
-        self.functions.showContact(self.makeRequest, contact_id)
+    #         if not self.companyId:
+    #             self.getCompanyId()
+
+    #         if not self.functions:
+    #             self.getFunctionsClass()
+    #         return func(self, *args)
+    #     return wrapper
+
+    # """### Sales"""
+
+    # # Sales: Invoices
+    # @initializeDec
+    # def indexInvoice(self):
+    #     return self.functions.indexInvoice()
+
+    # @initializeDec
+    # def createInvoice(self, data):
+    #     return self.functions.createInvoice(data)
+
+    # @initializeDec
+    # def showInvoice(self, pk):
+    #     return self.functions.showInvoice(pk)
+
+    # @initializeDec
+    # def editInvoice(self, data, pk):
+    #     return self.functions.editInvoice(data, pk)
+
+    # @initializeDec
+    # def deleteInvoice(self, pk):
+    #     return self.functions.deleteInvoice(pk)
+
+    # @initializeDec
+    # def payInvoice(self, data, pk):
+    #     return self.functions.payInvoice(data, pk)
+
+    # @initializeDec
+    # def cancelInvoice(self, pk):
+    #     return self.functions.cancelInvoice(pk)
+
+    # @initializeDec
+    # def recoverInvoice(self, pk):
+    #     return self.functions.recoverInvoice(pk)
+
+    # @initializeDec
+    # def arciveInvoice(self, pk):
+    #     return self.functions.archiveInvoice(pk)
+
+    # @initializeDec
+    # def unarchiveInvoice(self, pk):
+    #     return self.functions.unarchiveInvoice(pk)
+
+    # @initializeDec
+    # def covertEstimateInvoice(self, data):
+    #     return self.functions.convertEstimateInvoice(data)
+
+    # # Sales: Contacts (or Expenses Contacts)
+    # @initializeDec
+    # def indexContact(self):
+    #     return self.functions.IndexContact()
+
+    # @initializeDec
+    # def createContact(self, data):
+    #     return self.functions.createContact(data)
+
+    # @initializeDec
+    # def showContact(self, pk):
+    #     """ Show Contact endpoint via GET
+    #     Args:
+    #         data: JSON Request data
+    #         contact_id: id parameter of contact for url
+    #     """
+    #     return self.functions.showContact(pk)
+
+    # @initializeDec
+    # def editContact(self, data, pk):
+    #     return self.functions.editContact(data, pk)
+
+    # @initializeDec
+    # def deleteContact(self, pk):
+    #     return self.functions.deleteContact(pk)
+
+    # @initializeDec
+    # def transactionsContact(self, data, pk):
+    #     return self.functions.transactionsContact(data, pk)
+
+    # @initializeDec
+    # def payContact(self, data, pk):
+    #     return self.functions.payContact(data, pk)
+
+    # """### Expenses"""
+
+    # # Expenses: Bills
+    # @initializeDec
+    # def indexBill(self):
+    #     return self.functions.indexBill()
+
+    # @initializeDec
+    # def createBasicBill(self, data):
+    #     return self.functions.createBasicBill(data)
+
+    # @initializeDec
+    # def createDetailedBill(self, data):
+    #     return self.functions.createDetailedBill(data)
+
+    # @initializeDec
+    # def showBill(self, pk):
+    #     return self.functions.showBill(pk)
