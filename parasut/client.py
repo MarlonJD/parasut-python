@@ -200,7 +200,8 @@ class Client(object):
 
     def getFunctionsClass(self):
         self.functions = Functions(company_id=self.companyId,
-                                   base_url=self.baseUrl)
+                                   base_url=self.baseUrl,
+                                   make_request=self.makeRequest)
 
     def initialize(self):
         if not self.request:
