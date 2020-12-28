@@ -1,32 +1,14 @@
 parasut-python
 ==========================
-
-Parasut Python API Wrapper
+Parasut Python API Wrapper (Unoffical)
 
 ## Warning
+This project is not offical library. It's unoffical python wrapper
 This project is under heavy development. Please be aware before use
+Query parameters not included for functions
 
 ## Using
 ```
-CLIENT_ID = os.environ['PARASUT_CLIENT_ID']
-CLIENT_SECRET = os.environ['PARASUT_CLIENT_SECRET']
-USERNAME = os.environ['PARASUT_USERNAME']
-PASSWORD = os.environ['PARASUT_PASSWORD']
-
-client_obj = Client(client_id=CLIENT_ID,
-	client_secret=CLIENT_SECRET,
-	username=USERNAME,
-	password=PASSWORD,
-	#sandbox=True
-)
-
-client_obj.initialize()
-
-# Call functions that calls endpoints on parasut api
-client_obj.functions.indexInvoice()
-
-# POST Example
-
 import os
 from parasut.client import Client
 
@@ -35,21 +17,24 @@ CLIENT_SECRET = os.environ['PARASUT_CLIENT_SECRET']
 USERNAME = os.environ['PARASUT_USERNAME']
 PASSWORD = os.environ['PARASUT_PASSWORD']
 
+# Remove sandbox=True when production.
+# It's activating sandbox urls for testing
+# Sandbox link: api.heroku-staging.parasut.com
 client_obj = Client(client_id=CLIENT_ID,
                     client_secret=CLIENT_SECRET,
                     username=USERNAME,
                     password=PASSWORD,
                     sandbox=True)
 
-# It's making auth, token and other requirements, it's required
+# It's required
 client_obj.initialize()
 
 # You can get request parameters from
 # https://apidocs.parasut.com/#operation/createContact
-# Remove ids if you creating new object
+# All required request data examples can be found at
+# https://apidocs.parasut.com
 data = {
     "data": {
-      "id": "string",
       "type": "contacts",
       "attributes": {
         "email": "user@example.com",
@@ -93,8 +78,6 @@ data = {
 
 obj = client_obj.functions.createContact(data)
 print(obj.json())
-
-# 
 ```
 
 ## Package
@@ -152,3 +135,6 @@ To see an html output of coverage open ```htmlcov/index.html``` after running th
 
 There is a ```.travis.yml``` file that is set up to run your tests for python 2.7
 and python 3.2, should you choose to use it.
+
+## License
+MIT, Copyright (c) 2020 Burak Karahan

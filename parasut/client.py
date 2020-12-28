@@ -3,7 +3,7 @@ from oauthlib.oauth2 import LegacyApplicationClient, TokenExpiredError
 import json
 from .functions import Functions
 from . import urls
-from functools import wraps
+# from functools import wraps
 
 
 class Client(object):
@@ -76,7 +76,6 @@ class Client(object):
                 tokenUrl = urls.SANDBOX_TOKEN_URL
             else:
                 tokenUrl = urls.TOKEN_URL
-        print(tokenUrl)
         token = self.request.fetch_token(token_url=tokenUrl,
                                          username=self.username,
                                          password=self.password,
