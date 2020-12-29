@@ -1,4 +1,5 @@
-[![Build Status](https://travis-ci.org/MarlonJD/parasut-python.svg?branch=master)](https://travis-ci.org/MarlonJD/parasut-python) [![codecov](https://codecov.io/gh/MarlonJD/parasut-python/branch/master/graph/badge.svg?token=7SZMQENJDP)](https://codecov.io/gh/MarlonJD/parasut-python)
+[![Build Status](https://travis-ci.org/MarlonJD/parasut-python.svg?branch=master)](https://travis-ci.org/MarlonJD/parasut-python) [![codecov](https://codecov.io/gh/MarlonJD/parasut-python/branch/master/graph/badge.svg?token=7SZMQENJDP)](https://codecov.io/gh/MarlonJD/parasut-python) [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/dwyl/esta/issues) [![HitCount](http://hits.dwyl.com/marlonjd/parasut-python.svg)](http://hits.dwyl.com/marlonjd/parasut-python) [![Inline docs](http://inch-ci.org/github/marlonjd/parasut-python.svg?branch=master)](http://inch-ci.org/github/marlonjd/parasut-python)
+
 
 parasut-python
 ==========================
