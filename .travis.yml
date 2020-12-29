@@ -5,3 +5,5 @@ python:
   - "3.9"
 script:
   - py.test
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
