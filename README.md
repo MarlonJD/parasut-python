@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/MarlonJD/parasut-python.svg?branch=master)](https://travis-ci.org/MarlonJD/parasut-python)
+[![Build Status](https://travis-ci.org/MarlonJD/parasut-python.svg?branch=master)](https://travis-ci.org/MarlonJD/parasut-python) [![codecov](https://codecov.io/gh/MarlonJD/parasut-python/branch/master/graph/badge.svg?token=7SZMQENJDP)](https://codecov.io/gh/MarlonJD/parasut-python)
 
 parasut-python
 ==========================
