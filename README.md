@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/MarlonJD/parasut-python.svg?branch=master)](https://travis-ci.org/MarlonJD/parasut-python) [![codecov](https://codecov.io/gh/MarlonJD/parasut-python/branch/master/graph/badge.svg?token=7SZMQENJDP)](https://codecov.io/gh/MarlonJD/parasut-python) [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/dwyl/esta/issues) ![PyPI - Downloads](https://img.shields.io/pypi/dm/parasut-python) ![PyPI - License](https://img.shields.io/pypi/l/parasut-python)
+[![codecov](https://codecov.io/gh/MarlonJD/parasut-python/branch/master/graph/badge.svg?token=7SZMQENJDP)](https://codecov.io/gh/MarlonJD/parasut-python) [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/dwyl/esta/issues) ![PyPI - Downloads](https://img.shields.io/pypi/dm/parasut-python) ![PyPI - License](https://img.shields.io/pypi/l/parasut-python)
 
 
 parasut-python
