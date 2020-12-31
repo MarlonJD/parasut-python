@@ -18,7 +18,7 @@ TAXES_URL = BASE_URL + COMPANY_ID + '/taxes'
 EMPLOYEES_URL = BASE_URL + COMPANY_ID + '/employees'
 
 # LEGALIZE
-E_INVOICE_INBOX_URL = BASE_URL + COMPANY_ID + 'e_invoice_inboxes'
+E_INVOICE_INBOX_URL = BASE_URL + COMPANY_ID + '/e_invoice_inboxes'
 E_ARCHIVES_URL = BASE_URL + COMPANY_ID + '/e_archives'
 E_INVOICE_URL = BASE_URL + COMPANY_ID + '/e_invoices'
 E_SMMS_URL = BASE_URL + COMPANY_ID + '/e_smms'
@@ -29,7 +29,7 @@ TRANSACTIONS_URL = BASE_URL + COMPANY_ID + '/transactions'
 
 # STOCK/HOARD
 PRODUCTS_URL = BASE_URL + COMPANY_ID + '/products'
-SHIPMENT_DOCUMENTS_URL = BASE_URL + COMPANY_ID + 'shipment_documents'
+SHIPMENT_DOCUMENTS_URL = BASE_URL + COMPANY_ID + '/shipment_documents'
 STOCK_MOVEMENTS_URL = BASE_URL + COMPANY_ID + '/stock_movements'
 
 # SETTINGS
