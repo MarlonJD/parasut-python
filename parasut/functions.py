@@ -635,3 +635,11 @@ class Functions(object):
         """Other: Tackable Job Show via GET
         """
         return self.showGeneral(urls.TRACKABLE_JOB, pk)
+
+    def activeEDocument(self, pk):
+        """Other: Activate E-Document via GET
+        """
+        url = self.replaceUrl(urls.SALES_INVOICES_URL + '/' + pk + "/?include=active_e_document")
+        return self.makeRequest(url, 'GET')
+
+    
