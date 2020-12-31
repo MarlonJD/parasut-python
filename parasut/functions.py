@@ -426,11 +426,11 @@ class Functions(object):
         """
         return self.showGeneral(urls.E_INVOICE_URL, pk)
 
-    def showEInvoicePDF(self, data, pk):
+    def showEInvoicePDF(self, pk):
         """Legalize: E-Invoices Show PDF via GET
         """
         url = self.replaceUrl(urls.E_INVOICE_URL + '/' + pk + '/pdf')
-        return self.makeRequest(url, 'GET', data)
+        return self.makeRequest(url, 'GET')
 
     # Legalize: E-SMM
     def createEsmm(self, data):
@@ -443,11 +443,11 @@ class Functions(object):
         """
         return self.showGeneral(urls.E_SMMS_URL, pk)
 
-    def showEsmmPDF(self, data, pk):
+    def showEsmmPDF(self, pk):
         """Legalize: E-SMM Show PDF via GET
         """
         url = self.replaceUrl(urls.E_SMMS_URL + '/' + pk + '/pdf')
-        return self.makeRequest(url, 'GET', data)
+        return self.makeRequest(url, 'GET')
 
     """### Cash ###"""
 
