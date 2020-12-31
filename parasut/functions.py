@@ -392,10 +392,11 @@ class Functions(object):
     """### Legalize ###"""
 
     # Legalize: E-Invoice Inboxes
-    def indexEInvoiceInbox(self):
+    def indexEInvoiceInbox(self, vkn):
         """Legelize: E-Invoice Inboxes Index via GET
         """
-        return self.indexGeneral(urls.E_INVOICE_INBOX_URL)
+        url = self.replaceUrl(urls.E_INVOICE_INBOX_URL + "?vkn=" + vkn)
+        return self.makeRequest(url, 'GET')
 
     # Legalize: E-Archives
     def createEArchive(self, data):
