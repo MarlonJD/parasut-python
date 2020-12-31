@@ -631,7 +631,7 @@ class Functions(object):
         return self.showGeneral(urls.ME_URL)
 
     # Other: Tackable Job
-    def showTackableJob(self, pk):
+    def showTrackableJob(self, pk):
         """Other: Tackable Job Show via GET
         """
         return self.showGeneral(urls.TRACKABLE_JOB, pk)
