@@ -2,7 +2,7 @@ import setuptools
 from parasut.version import Version
 
 setuptools.setup(name='parasut-python',
-                 version=Version('0.0.3').number,
+                 version=Version('0.0.4').number,
                  description='Parasut API Python Wrapper',
                  long_description=open('README.md').read().strip(),
                  long_description_content_type="text/markdown",
@@ -13,8 +13,7 @@ setuptools.setup(name='parasut-python',
                  zip_safe=False,
                  keywords='parasut python api',
                  install_requires=[
-                     'pytest>=6.2.1', 'pytest-cov>=2.10.1', 'requests>=2.25.0',
-                     'requests_oauthlib>=1.3.0'
+                     'pytest>=6.2.1', 'pytest-cov>=2.10.1', 'requests_oauthlib>=1.3.0'
                  ],
                  classifiers=[
                      "Programming Language :: Python :: 3",
