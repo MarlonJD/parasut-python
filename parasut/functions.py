@@ -402,12 +402,12 @@ class Functions(object):
     def createEArchive(self, data):
         """Legalize: E-Arhives Create via POST
         """
-        return self.createGeneral(urls.E_INVOICE_INBOX_URL, data)
+        return self.createGeneral(urls.E_ARCHIVES_URL, data)
 
     def showEArchive(self, pk):
         """Legalize: E-Arhives Show via GET
         """
-        return self.showGeneral(urls.E_INVOICE_INBOX_URL, pk)
+        return self.showGeneral(urls.E_ARCHIVES_URL, pk)
 
     def showEArchivePDF(self, data, pk):
         """Legalize: E-Arhives Show PDF via GET
