@@ -9,6 +9,7 @@ from . import urls
 class Client(object):
     """Documentation for Client
     """
+
     def __init__(self, **kwargs):
         self.client_id = kwargs.get('client_id')
         self.client_secret = kwargs.get('client_secret')
@@ -80,7 +81,10 @@ class Client(object):
                                          username=self.username,
                                          password=self.password,
                                          client_id=self.client_id,
-                                         client_secret=self.client_secret)
+                                         client_secret=self.client_secret,
+                                         grant_type="password",
+                                         redirect_uri="urn:ietf:wg:oauth:2.0:oob",
+                                         )
         self.saveToken(token)
 
     def refreshToken(self, token):
